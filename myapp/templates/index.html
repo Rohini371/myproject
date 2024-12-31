@@ -1,0 +1,58 @@
+{% comment %} {%extends 'basic.html'%}
+
+    {%block 'body' %}
+    {% for student in students%}
+    {% filter upper %}
+<h1><li style ="color: {%cycle 'red' 'green' 'brown'%};">
+    Hi, {{student.name }} - {{student.name | length | add:"2"}} - {{student.city}}
+</li></h1>
+{#commet#}
+{% endfilter %}
+    {% endfor %}
+{% if students %}
+    <p>We have {{students|length}} students.</p>
+    {%else%}
+    <p>No students found.</p>
+{% endif%}
+{% filter upper %}
+{{students.0.nAME|CUT:""}}
+{%endfilter%}
+    {%endblock%}
+{%lorem%%}
+{% with student='ro'%}
+{{students}}
+{% endwith %} {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+</head>
+<body>
+    {}
+{% for student in students %}
+<h1><li style='color: {% cycle 'red' 'green' 'blue' 'pink' %}'>
+    Hi, {{student.name}} - {{ student.name|length|add:"1" }} 
+    </li></h1>
+    {# comment #}
+{% endfor %}
+{% if students %}
+    <p>We have {{ students|length }} students.</p>
+{% else %}
+{%empty%}
+    <p>No students found.</p>
+{%endempty%}
+{% endif %}
+{% filter upper %}
+{{students.0.name|cut:""}}
+{% endfilter %}
+{% lorem 0 w %}
+
+{% with student='Roh'%}
+{{student}}
+{% endwith %}
+
+</body>
+</html>
